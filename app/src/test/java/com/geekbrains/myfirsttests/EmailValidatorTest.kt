@@ -40,4 +40,24 @@ class EmailValidatorTest {
     fun emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(null))
     }
+
+    @Test
+    fun emailValidator_NoDomain_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name"))
+    }
+
+    @Test
+    fun emailValidator_WrongSubDomainFormat_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@email-com"))
+    }
+
+    @Test
+    fun emailValidator_ForbiddenSymbol_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("na#me@email.com"))
+    }
+
+    @Test
+    fun emailValidator_TooManySymbols_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@email.comcomcomcomcomcomcomcomcom"))
+    }
 }
